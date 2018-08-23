@@ -20,8 +20,9 @@ namespace SpaceInvaders
         int totalEnemies = 12;
         int playerSpeed = 6;
 
-        public Form1()
-        {
+
+        public Form1() {
+
             InitializeComponent();
         }
 
@@ -90,7 +91,7 @@ namespace SpaceInvaders
 
                     if (((PictureBox)x).Left > 720)
                     {
-                        ((PictureBox)x).Top += ((PictureBox)x).Height + 10;
+                        ((PictureBox)x).Top += ((PictureBox)x).Height + 30;
 
                         ((PictureBox)x).Left = -50;
                     }
@@ -99,23 +100,33 @@ namespace SpaceInvaders
             //Fin del movimiento de los enemigos en pantalla
 
             //Animamos las balas y removemos cuando salgan de la escena
-
-            foreach (Control y in this.Controls)
-            {
+            foreach (Control y in this.Controls) {
                 if (y is PictureBox && y.Tag == "bullet")
-                {
-                    y.Top -= 20;
-                    if(((PictureBox)y).Top < this.Height - 490)
-                    {
+                {   y.Top -= 20;
+                    if(((PictureBox)y).Top < this.Height - 490) {
                         this.Controls.Remove(y);
                     }
                 }
             }
             //Fin de la animacion de las balas
+
+            //Las balas logran destruir a los enemigos
+            foreach (Control a in this.Controls) {
+                foreach (Control b in this.Controls) {
+                    if (a is PictureBox && a.Tag == "invaders") {
+                        if (b is PictureBox && (b.Tag == "bullet" || b.Tag == "tank")) {
+                            if (a.Bounds.IntersectsWith(b.Bounds)) {
+                                score++;
+                                this.Controls.Remove(a);
+                                this.Controls.Remove(b);
+                            }
+                        }
+                    }
+                }
+            }
         }
 
-        private void makeBullet()
-        {
+        private void makeBullet() {
             PictureBox bullet = new PictureBox();
             bullet.Image = Properties.Resources.bullet;
             bullet.Size = new Size(5, 20);
@@ -126,10 +137,24 @@ namespace SpaceInvaders
             bullet.BringToFront();
         }
 
+        //Colision de enemigos y balas
+
+
         private void gameOver()
         {
             timer1.Stop();
             label2.Text += " Game Over";
+        }
+
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
