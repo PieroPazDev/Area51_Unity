@@ -74,7 +74,7 @@ namespace SpaceInvaders
                 player.Left += playerSpeed;
             }
 
-            //Fin de el movimiento
+            //Fin de el movimiento del jugador
 
             //Los enemigos se mueven en la pantalla
             foreach (Control x in this.Controls)
