@@ -19,9 +19,12 @@ namespace SpaceInvaders
         bool isPressed;
         int totalEnemies = 12;
         int playerSpeed = 6;
+        int speedenemie = 8;
+
 
 
         public Form1() {
+
 
             InitializeComponent();
         }
@@ -89,11 +92,32 @@ namespace SpaceInvaders
 
                     ((PictureBox)x).Left += speed;
 
-                    if (((PictureBox)x).Left > 720)
+                    if (((PictureBox)x).Left > 470)
                     {
-                        ((PictureBox)x).Top += ((PictureBox)x).Height + 30;
+                        ((PictureBox)x).Top += ((PictureBox)x).Height + 20;
 
-                        ((PictureBox)x).Left = -50;
+                        ((PictureBox)x).Left = -30;
+                    }
+                }
+            }
+
+            //Los enemigos se mueven en la pantalla
+            foreach (Control x in this.Controls)
+            {
+                if (x is PictureBox && x.Tag == "invaders2")
+                {
+                    if (((PictureBox)x).Bounds.IntersectsWith(player.Bounds))
+                    {
+                        gameOver();
+                    }
+
+                    ((PictureBox)x).Left += speed;
+
+                    if (((PictureBox)x).Left > 470)
+                    {
+                        ((PictureBox)x).Top += ((PictureBox)x).Height + 40;
+
+                        ((PictureBox)x).Left = -40;
                     }
                 }
             }
@@ -113,7 +137,7 @@ namespace SpaceInvaders
             //Las balas logran destruir a los enemigos
             foreach (Control a in this.Controls) {
                 foreach (Control b in this.Controls) {
-                    if (a is PictureBox && a.Tag == "invaders") {
+                    if (a is PictureBox && a.Tag == "invaders" || a.Tag =="invaders2") {
                         if (b is PictureBox && (b.Tag == "bullet" || b.Tag == "tank")) {
                             if (a.Bounds.IntersectsWith(b.Bounds)) {
                                 score++;
@@ -123,6 +147,19 @@ namespace SpaceInvaders
                         }
                     }
                 }
+                if (speedenemie == totalEnemies - 1)
+                {
+                    speedenemie = 8;
+                }
+            }
+
+            //Mostrando el puntaje y fin del juego al ganar
+
+            label1.Text = "Score: " + score;
+
+            if (score > totalEnemies - 1) {
+                gameOver();
+                MessageBox.Show("Haz salvado la tierra");
             }
         }
 
@@ -138,8 +175,6 @@ namespace SpaceInvaders
         }
 
         //Colision de enemigos y balas
-
-
         private void gameOver()
         {
             timer1.Stop();
