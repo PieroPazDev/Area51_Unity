@@ -90,7 +90,7 @@ namespace SpaceInvaders
                         gameOver();
                     }
 
-                    ((PictureBox)x).Left += speed;
+                    ((PictureBox)x).Left += speedenemie;
 
                     if (((PictureBox)x).Left > 470)
                     {
