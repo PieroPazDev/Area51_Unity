@@ -101,28 +101,6 @@ namespace SpaceInvaders
                 }
             }
 
-            //Los enemigos se mueven en la pantalla
-            foreach (Control x in this.Controls)
-            {
-                if (x is PictureBox && x.Tag == "invaders2")
-                {
-                    if (((PictureBox)x).Bounds.IntersectsWith(player.Bounds))
-                    {
-                        gameOver();
-                    }
-
-                    ((PictureBox)x).Left += speed;
-
-                    if (((PictureBox)x).Left > 470)
-                    {
-                        ((PictureBox)x).Top += ((PictureBox)x).Height + 40;
-
-                        ((PictureBox)x).Left = -40;
-                    }
-                }
-            }
-            //Fin del movimiento de los enemigos en pantalla
-
             //Animamos las balas y removemos cuando salgan de la escena
             foreach (Control y in this.Controls) {
                 if (y is PictureBox && y.Tag == "bullet")
@@ -137,8 +115,8 @@ namespace SpaceInvaders
             //Las balas logran destruir a los enemigos
             foreach (Control a in this.Controls) {
                 foreach (Control b in this.Controls) {
-                    if (a is PictureBox && a.Tag == "invaders" || a.Tag =="invaders2") {
-                        if (b is PictureBox && (b.Tag == "bullet" || b.Tag == "tank")) {
+                    if (a is PictureBox && a.Tag == "invaders") {
+                        if (b is PictureBox && (b.Tag == "bullet" )) {
                             if (a.Bounds.IntersectsWith(b.Bounds)) {
                                 score++;
                                 this.Controls.Remove(a);
@@ -146,10 +124,6 @@ namespace SpaceInvaders
                             }
                         }
                     }
-                }
-                if (speedenemie == totalEnemies - 1)
-                {
-                    speedenemie = 8;
                 }
             }
 
@@ -159,7 +133,7 @@ namespace SpaceInvaders
 
             if (score > totalEnemies - 1) {
                 gameOver();
-                MessageBox.Show("Haz salvado la tierra");
+                MessageBox.Show("Ganaste! Haz salvado la tierra");
             }
         }
 
@@ -180,7 +154,6 @@ namespace SpaceInvaders
             timer1.Stop();
             label2.Text += " Game Over";
         }
-
 
         private void Form1_Load(object sender, EventArgs e)
         {
