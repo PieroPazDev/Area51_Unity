@@ -27,8 +27,4 @@ public class MovimientoControlado2D : MonoBehaviour
             }
         }
     }
-
-    void CheckStep (Vector3 targetDir) {
-        Vector3 CheckPosition = transform.position + targetDir;
-    }
-}
+ }
