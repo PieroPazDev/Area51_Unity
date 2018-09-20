@@ -99,7 +99,6 @@ StyleCopReport.xml
 *_p.c
 *_i.h
 *.ilk
-*.meta
 *.obj
 *.iobj
 *.pch
@@ -216,6 +215,7 @@ PublishScripts/
 **/[Pp]ackages/*
 # except build/, which is used as an MSBuild target.
 !**/[Pp]ackages/build/
+!**/[Pp]ackages/manifest.json
 # Uncomment if necessary however generally it will be regenerated when needed
 #!**/[Pp]ackages/repositories.config
 # NuGet v3's project.json files produces more ignorable files
