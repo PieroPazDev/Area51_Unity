@@ -32,8 +32,7 @@ public class MovimientoInstantaneo2D : MonoBehaviour
     {
         RaycastHit2D hit2D = Physics2D.Raycast(transform.position + direction, Vector3.forward);
 
-        if (hit2D && hit2D.collider.CompareTag("MovableBlock"))
-        {
+        if (hit2D && hit2D.collider.CompareTag("MovableBlock")){
             hit2D.collider.transform.Translate(direction);
         }
 

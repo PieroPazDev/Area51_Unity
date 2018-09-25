@@ -27,4 +27,11 @@ public class MovimientoContinuo2D : MonoBehaviour {
         movement = movement.normalized * speed * Time.deltaTime;
         transform.Translate(movement);
 	}
+
+	private void OnTriggerEnter2D(Collider2D other)
+	{
+        if(other.CompareTag ("Barrel")){
+            Destroy(gameObject);
+        }
+	}
 }
