@@ -8,6 +8,7 @@ TagManager:
   - MovableBlock
   - Enemy
   - Barrel
+  - Character
   layers:
   - Default
   - TransparentFX

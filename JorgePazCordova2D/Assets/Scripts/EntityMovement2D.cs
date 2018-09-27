@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class EntityMovement2D : MonoBehaviour {
 
     public float speed = 2f;
