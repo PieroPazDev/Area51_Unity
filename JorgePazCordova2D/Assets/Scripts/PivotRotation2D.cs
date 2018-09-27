@@ -4,25 +4,27 @@ using UnityEngine;
 
 public class PivotRotation2D : EntityMovement2D {
 
-    public Vector2 pivotDirection;
+    public Vector2 currentPivotDirection;
     public float pivotDistance = 1f;
-    private Vector2 currentPivotDirection;
 
-    public Vector3 pivotPosition;
+    public Vector3 pivotPosition { get { return transform.position + ((Vector3)currentPivotDirection * pivotDistance); }}
 
 	// Use this for initialization
 	void Start () {
-        currentPivotDirection = pivotDirection;
-        pivotPosition = transform.position + ((Vector3) currentPivotDirection * pivotDistance);
-	}
+
+    }
 	
 	// Update is called once per frame
     protected override void Update () {
 
         direction = (pivotPosition - transform.position).normalized;
-        direction = Vector2.Perpendicular(direction);
+        direction = Vector2.Perpendicular (direction);
 
         base.Update();
+
+        currentPivotDirection -= (Vector2)movement / pivotDistance;
+        //transform.position = pivotPosition + (transform.position - pivotPosition).normalized * pivotDistance;
+        //Debug.Log(pivotPosition);
 	}
 
 	void OnDrawGizmos(){

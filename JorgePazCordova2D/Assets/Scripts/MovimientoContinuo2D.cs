@@ -50,4 +50,9 @@ public class MovimientoContinuo2D : MonoBehaviour
             SceneManager.LoadScene(2);
         }
     }
+
+    bool FindObstacle (Vector3 direction) {
+        RaycastHit2D hit2D = Physics2D.Raycast (transform.position, direction);
+        return hit2D && hit2D.collider.CompareTag ("StaticBlock");
+    }
 }
