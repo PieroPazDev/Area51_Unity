@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Barrel
   - Character
+  - player
   layers:
   - Default
   - TransparentFX
