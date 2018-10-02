@@ -4,8 +4,7 @@ using UnityEngine;
 using Utilities2D;
 using UnityEngine.SceneManagement;
 
-public class MovimientoContinuo2D : MonoBehaviour
-{
+public class MovimientoContinuo2D : MonoBehaviour {
 
     public float speed;
 
@@ -33,26 +32,33 @@ public class MovimientoContinuo2D : MonoBehaviour
         transform.Translate(movement);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Barrel"))
-        {
-            Destroy(gameObject);
+       if (other.CompareTag("Enemy")) {
+            Debug.Log("Meta");
         }
 
-        if (other.CompareTag("Barrel"))
-        {
-            SceneManager.LoadScene(0);
+        if (other.CompareTag("Barrel")) {
+            Debug.Log("Chocaste");
+            //SceneManager.LoadScene(0);
+        } else if (other.CompareTag("CamArea")){
+            Camera.main.GetComponent<CamControl>().SwitchTarget (other.transform, 18); 
         }
 
-        if (other.CompareTag("Enemy"))
-        {
-            SceneManager.LoadScene(2);
-        }
     }
 
+
+
     bool FindObstacle (Vector3 direction) {
-        RaycastHit2D hit2D = Physics2D.Raycast (transform.position, direction);
-        return hit2D && hit2D.collider.CompareTag ("StaticBlock");
+        RaycastHit2D[] hits2D = Physics2D.RaycastAll (transform.position, direction, 0.5f);
+        Debug.DrawRay(transform.position, direction, Color.green, 2);
+
+        foreach(RaycastHit2D hit2D in hits2D){
+            if (hit2D.collider.CompareTag("StaticBlock")){
+                return true;
+            }
+        }
+        return false;
+
     }
 }

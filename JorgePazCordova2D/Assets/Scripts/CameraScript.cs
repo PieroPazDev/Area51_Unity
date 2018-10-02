@@ -5,10 +5,8 @@ using UnityEngine;
 public class CameraScript : MonoBehaviour {
 
     private Transform player;
-    public float topLimit;
-    public float downLimit;
-    public float leftLimit;
-    public float rigthLimit;
+    public float topLimit,downLimit;
+    public float leftLimit,rigthLimit;
 
     void Start()
     {

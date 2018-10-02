@@ -10,6 +10,7 @@ TagManager:
   - Barrel
   - Character
   - player
+  - CamArea
   layers:
   - Default
   - TransparentFX
