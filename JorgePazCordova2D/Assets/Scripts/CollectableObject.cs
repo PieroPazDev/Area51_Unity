@@ -4,5 +4,15 @@ using UnityEngine;
 
 public class CollectableObject : MonoBehaviour {
 
-    public float points;
+	void Awake() {
+        GameControl.instance.objectiveInstances.Add(this);
+	}
+
+	public float points;
+
+    public void Collect(){
+        Debug.Log("Collect" + points + "Points");
+        GameControl.instance.CheckInstantPoint(this);
+        Destroy(gameObject);
+    }
 }

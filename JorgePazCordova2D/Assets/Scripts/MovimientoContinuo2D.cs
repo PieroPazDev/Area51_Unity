@@ -34,12 +34,12 @@ public class MovimientoContinuo2D : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-       if (other.CompareTag("Enemy")) {
-            Debug.Log("Meta");
-        }
+       //if (other.CompareTag("Enemy")) {
+         //   Debug.Log("Meta");
+        //}
 
         if (other.CompareTag("Barrel")) {
-            Debug.Log("Chocaste");
+            GameControl.instance.RestartLevel();
             //SceneManager.LoadScene(0);
         } else if (other.CompareTag("CamArea")){
             Camera.main.GetComponent<CamControl>().SwitchTarget (other.transform, 18); 
