@@ -9,7 +9,8 @@ public class GameControl : MonoBehaviour {
 
     //Definicion de las variables
     //enteros representados por palabras
-    public enum LevelObjective {
+    public enum LevelObjective
+    {
         Collect,
         Destroy,
         ReachPoint
@@ -20,61 +21,80 @@ public class GameControl : MonoBehaviour {
 
     public List<MonoBehaviour> objectiveInstances = new List<MonoBehaviour>();
 
-	void Awake() {
+    void Awake()
+    {
         if (!instance) { instance = this; }
-	}
+    }
 
-	void Start() {
+    void Start()
+    {
         Init();
-	}
+    }
 
-	void Init() {
-        if (levelObjective == LevelObjective.Collect){
+    void Init()
+    {
+        if (levelObjective == LevelObjective.Collect)
+        {
             ReselectInstances(typeof(CollectableObject));
-        } else if (levelObjective == LevelObjective.Destroy){
+        }
+        else if (levelObjective == LevelObjective.Destroy)
+        {
             ReselectInstances(typeof(DestroyableObject));
         }
-	}
+    }
 
-    void ReselectInstances(System.Type type){
+    void ReselectInstances(System.Type type)
+    {
         objectiveInstances = objectiveInstances.FindAll(script => script.GetType() == type);
-        foreach (var script in objectiveInstances){
+        foreach (var script in objectiveInstances)
+        {
             objectiveCount++;
         }
     }
 
-    public void CheckInstantPoint  (MonoBehaviour script){
-        if (objectiveInstances.Contains (script)){
+    public void CheckInstantPoint(MonoBehaviour script)
+    {
+        if (objectiveInstances.Contains(script))
+        {
             objectiveInstances.Remove(script);
-            objectiveCount --;
+            objectiveCount--;
         }
+        CheckLevelObjectives();
     }
 
-    void CheckLevelObjectives(){
-        if (objectiveCount <= 0){
+    void CheckLevelObjectives()
+    {
+        if (objectiveCount <= 0)
+        {
             NextLevel();
         }
     }
-	
-    public void RestartLevel (){
-        SwitchScene (SceneManager.GetActiveScene().name);
+
+    public void RestartLevel()
+    {
+        SwitchScene(SceneManager.GetActiveScene().name);
     }
 
-    public void NextLevel () {
-        SwitchScene (null);
+    public void NextLevel()
+    {
+        SwitchScene(null);
     }
 
-    void SwitchScene (string sceneName) {
+    void SwitchScene(string sceneName)
+    {
         ClearSceneData();
-        if (string.IsNullOrEmpty(sceneName)){
+        if (string.IsNullOrEmpty(sceneName))
+        {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
-        else {
+        else
+        {
             SceneManager.LoadScene(sceneName);
         }
-	}
+    }
 
-    void ClearSceneData (){
+    void ClearSceneData()
+    {
         objectiveCount = 0;
     }
 }
