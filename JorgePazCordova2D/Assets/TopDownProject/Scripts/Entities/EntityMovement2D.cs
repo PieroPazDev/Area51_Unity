@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class EntityMovement2D : MonoBehaviour {
 
-    public float speed = 2f;
+    public float speed = 1f;
     public Vector2 direction;
     public Vector3 movement { get { return direction * speed * Time.deltaTime; } }
 
@@ -15,7 +14,7 @@ public class EntityMovement2D : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-    protected virtual void Update () {
-        transform.Translate (direction * speed * Time.deltaTime);
+	protected virtual void Update () {
+        transform.Translate (movement);
 	}
 }

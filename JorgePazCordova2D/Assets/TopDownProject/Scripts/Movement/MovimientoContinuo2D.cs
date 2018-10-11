@@ -8,7 +8,7 @@ public class MovimientoContinuo2D : MonoBehaviour {
     public float speed;
     public List<AxisPair> axes;
 
-    public GameObject bulletPrefab;
+    //public GameObject bulletPrefab;
 
     // Use this for initialization
     void Start()
@@ -28,10 +28,10 @@ public class MovimientoContinuo2D : MonoBehaviour {
             }
         }
         //--------------------------------
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Instantiate(bulletPrefab, transform.position + Vector3.up, transform.rotation);
-        }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+          //  Instantiate(bulletPrefab, transform.position + Vector3.up, transform.rotation);
+        //}
         //--------------------------------
         movement = movement.normalized * speed * Time.deltaTime;
         transform.Translate(movement);
