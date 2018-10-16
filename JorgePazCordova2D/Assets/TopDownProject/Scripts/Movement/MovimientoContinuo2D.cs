@@ -30,7 +30,7 @@ public class MovimientoContinuo2D : MonoBehaviour {
         //--------------------------------
         //if (Input.GetKeyDown(KeyCode.Space))
         //{
-          //  Instantiate(bulletPrefab, transform.position + Vector3.up, transform.rotation);
+          //Instantiate(bulletPrefab, transform.position + Vector3.up, transform.rotation);
         //}
         //--------------------------------
         movement = movement.normalized * speed * Time.deltaTime;
