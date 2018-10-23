@@ -8,13 +8,19 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
-    path: Assets/Resources/Scenes/Principal.unity
+  - enabled: 0
+    path: Assets/TopDownProject/Resources/Scenes/Principal.unity
     guid: 23c5cf6addbf140c69ea1adc955f58d6
-  - enabled: 1
-    path: Assets/Resources/Scenes/SampleScene.unity
+  - enabled: 0
+    path: Assets/TopDownProject/Resources/Scenes/SampleScene.unity
     guid: b37f7d36e488840728bfb4751b50eb5d
-  - enabled: 1
-    path: Assets/Resources/Scenes/Final.unity
+  - enabled: 0
+    path: Assets/TopDownProject/Resources/Scenes/Final.unity
     guid: 04f4b819b18abdb43a7f5d3d7d6f6b77
+  - enabled: 1
+    path: Assets/PlatformProject/Resources/Scenes/ProjectPlatform.unity
+    guid: 56116fb336e414a81aec1a8cb85843c6
+  - enabled: 1
+    path: Assets/PlatformProject/Resources/Scenes/PlatformMenuScene.unity
+    guid: 4d4b8278c671946a8a86824b9a90b2a3
   m_configObjects: {}

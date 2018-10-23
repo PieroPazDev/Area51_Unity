@@ -81,10 +81,10 @@ public class PhysicsPlatformMove : MonoBehaviour
         for (int i = 0; i < points.Length; i++) {
             hit2D[i] = Physics2D.Raycast(points[i], Vector3.down, minDistance);
             if (hit2D[i]) {
-                Debug.Log(hit2D[i].collider.name);
+                //Debug.Log(hit2D[i].collider.name);
                 if (speed.y < 0) { 
                     transform.position = (transform.position + (Vector3.down * minDistance));
-                    Debug.Log(speed);
+                    //Debug.Log(speed);
                     speed.y = 0;
                 }
                 grounded = true;
