@@ -48,6 +48,7 @@ public class PhysicsPlatformMove : MonoBehaviour
 
         if (grounded && Input.GetKeyDown(KeyCode.Space)){
             speed.y = jumpForce;
+	
         }
      }
     void FixedUpdate (){
@@ -56,6 +57,7 @@ public class PhysicsPlatformMove : MonoBehaviour
         }
 
         GroundCheck();
+
 
         animator.SetBool("Moving", (movement.x != 0) && grounded);
 
