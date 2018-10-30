@@ -37,10 +37,4 @@ public class PongCorto : MonoBehaviour {
         }
     }
 
-    public void RestartLevel()
-    {
-        Debug.Log("Collect");
-
-        Destroy(gameObject);
-    }
 }
