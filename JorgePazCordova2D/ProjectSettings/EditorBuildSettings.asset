@@ -23,7 +23,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/PlatformProject/Resources/Scenes/PlatformMenuScene.unity
     guid: 4d4b8278c671946a8a86824b9a90b2a3
-  - enabled: 1
+  - enabled: 0
     path: Assets/2D Project/Resources/Scenes/Platform_2D_Prototype.unity
     guid: caf83332843611e438b89fca40f1bcec
+  - enabled: 1
+    path: Assets/2D Project/Resources/Scenes/Parte 1.unity
+    guid: 018ce19034e00d04fb44eb03dea65ce5
   m_configObjects: {}

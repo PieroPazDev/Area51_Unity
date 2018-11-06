@@ -14,6 +14,7 @@ public class PhysicsPlatformMove : MonoBehaviour
     public float jumpForce = 7f;
     public bool grounded;
 
+
     Vector3 movement;
     Vector2 distanceLeft;
     Vector2 distanceRight;
@@ -35,6 +36,8 @@ public class PhysicsPlatformMove : MonoBehaviour
         distanceLeft.y = - col2D.bounds.extents.y;
         distanceRight.x =  col2D.bounds.extents.x - margin;
         distanceRight.y = - col2D.bounds.extents.y;
+
+
     }
 
     // Update is called once per frame
@@ -46,7 +49,7 @@ public class PhysicsPlatformMove : MonoBehaviour
            }
         }
 
-        if (grounded && Input.GetKeyDown(KeyCode.Space)){
+        if (grounded && Input.GetKeyDown(KeyCode.W)){
             speed.y = jumpForce;
         }
      }
@@ -62,11 +65,14 @@ public class PhysicsPlatformMove : MonoBehaviour
 
         SpriteRenderer rend = GetComponent<SpriteRenderer>();
         if (movement.x > 0 && rend.flipX) { rend.flipX = false; }
-        else if (movement.x < 0 && !rend.flipX) { rend.flipX = true; } 
+        else if (movement.x < 0 && !rend.flipX) { rend.flipX = true; }
+
 
         movement = movement.normalized * speed.x * Time.fixedDeltaTime;
         movement.y = speed.y * Time.fixedDeltaTime;
-        rb2D.MovePosition(transform.position + movement);   
+        rb2D.MovePosition(transform.position + movement); 
+        
+
     }
 
 	private void OnDrawGizmos() {

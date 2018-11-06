@@ -517,9 +517,9 @@ TextureImporter:
       name: cave_4_17
       rect:
         serializedVersion: 2
-        x: 64
+        x: 94
         y: 832
-        width: 64
+        width: 95
         height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -529,26 +529,6 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 96e7e187b3f4e904182930db39b3362a
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cave_4_18
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 832
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 10cdc7499198a824c90ae2dae0e860e4
       vertices: []
       indices: 
       edges: []
