@@ -10,13 +10,13 @@ public class LevelReset : MonoBehaviour
     {
         if (other.name == "PlatformChar")
         {
-            if (SceneManager.sceneCountInBuildSettings == SceneManager.GetActiveScene().buildIndex + 1)
+            if (SceneManager.sceneCountInBuildSettings == SceneManager.GetActiveScene().buildIndex)
             {
                 SceneManager.LoadScene(0);
             }
             else
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
         }
     }
