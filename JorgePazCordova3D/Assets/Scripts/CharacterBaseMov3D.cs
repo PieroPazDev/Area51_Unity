@@ -1,19 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EntityData.StructLib;
 
 public class CharacterBaseMov3D : MonoBehaviour {
-
-    public struct CharTransformData{
-        public Vector3 position;
-        public Quaternion rotation;
-    }
 
     Rigidbody rigBod;
     Vector3 movement;
 
     CharTransformData respawnData;
-    Vector3 respawnPos;
+
 
     public float speed = 5f;
     public float angSpeed = 25f;
@@ -42,14 +38,16 @@ public class CharacterBaseMov3D : MonoBehaviour {
     void Respawn () {
         rigBod.velocity = Vector3.zero;
         Reposition (respawnData);
-        rigBod.MovePosition(respawnData.position);
-        CamBehaviour playerCam = Camera.main.GetComponent<CamBehaviour> ();
-        playerCam.Reposition(respawnPos + playerCam.followDistance);
+        CamBehaviour.main.Reposition(respawnData.position + CamBehaviour.main.data.followDistance);
     }
 
-    public void Reposition (CharTransformData transformData){
+    public void Reposition (CharTransformData transformData) {
         rigBod.MovePosition (respawnData.position);
         rigBod.MoveRotation (respawnData.rotation);
+    }
+
+    public void SetRespawn (CharTransformData transformData){
+        respawnData = transformData;
     }
 
 	void OnTriggerExit (Collider other) {

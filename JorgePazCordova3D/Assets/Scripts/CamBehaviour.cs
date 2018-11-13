@@ -1,42 +1,34 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EntityData.StructLib;
 
 public class CamBehaviour : MonoBehaviour {
 
-    //[System.Serializable]
-    public struct TargetData {
-        public Transform target;
-        public Vector3 focusDistance;
-        public Vector3 followDistance;
-        public float minFollowDistance;
+    private TargetData defaultData;
+    public TargetData data; 
 
-        public void SetFromVariables(Transform target, Vector3 focus, Vector3 follow, float minSpeed){
-            this.target = target;
-            focusDistance = focus;
-            followDistance = follow;
-            minFollowDistance = minSpeed;
-        }
-    }
+    Vector3 focusPoint { get { return data.target.position + GetRelativePos(data.target, data.focusDistance); } }
+    Vector3 followPoint { get { return data.target.position + GetRelativePos(data.target, data.followDistance); } }
+    public float followDistanceDelta { get { return Vector3.Distance (transform.position, data.followDistance); }}
 
-    public Transform target;
-    public Vector3 focusDistance;
-    Vector3 focusPoint { get { return target.position + GetRelativePos(target, focusDistance); } }
-    public Vector3 followDistance;
-    Vector3 followPoint { get { return target.position + GetRelativePos(target, followDistance); } }
-    public float minFollowSpeed = 1f;
-    public float followDistanceDelta { get { return Vector3.Distance (transform.position, followDistance); }}
+    public static CamBehaviour main;
 
-    public TargetData defaultData;
+	private void Awake()
+	{
+        main = Camera.main.GetComponent<CamBehaviour>();
+	}
 
-    void Start () {
-
+	void Start () {
+        //defaultData.SetFromVariables(target, focusDistance, followDistance, minFollowSpeed);
+        defaultData = data;
     }
 
     void LateUpdate () {
-        transform.position = Vector3.MoveTowards(transform.position , followPoint, (minFollowSpeed + followDistanceDelta) * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position , followPoint, (data.minFollowSpeed + followDistanceDelta) * Time.deltaTime);
         transform.LookAt (focusPoint);
     }
+
 
     Vector3 GetRelativePos (Transform relativeTarget, Vector3 distance){
         Vector3 relativePos;
@@ -51,11 +43,19 @@ public class CamBehaviour : MonoBehaviour {
         transform.position = updatedPosition;
     }
 
-    private void OnDrawGizmos () {
+	public void ResetData()
+	{
+        data = defaultData;
+	}
+
+	private void OnDrawGizmos () {
+
+        if (data.target) {
         Gizmos.color = Color.green;
-        Gizmos.DrawLine (followPoint, focusPoint);
-        Gizmos.DrawSphere (focusPoint, 0.25f);
-        Gizmos.color = Color.white;
-        Gizmos.DrawWireSphere (followPoint, 0.25f);
+            Gizmos.DrawLine(followPoint, focusPoint);
+            Gizmos.DrawSphere(focusPoint, 0.25f);
+            Gizmos.color = Color.white;
+            Gizmos.DrawWireSphere(focusPoint, 0.25f);
+        }
     }
 }
