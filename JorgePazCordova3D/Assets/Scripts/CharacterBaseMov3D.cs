@@ -27,10 +27,19 @@ public class CharacterBaseMov3D : MonoBehaviour {
 	}
 
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.Space)) {
+        if (grounded && Input.GetKeyDown(KeyCode.Space)) {
             //Set velocity Y to zero for consistent jump height
             rigBod.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
         }
+        if (rigBod.velocity.x != 0 || rigBod.velocity.z != 0){
+            Vector3 temp = rigBod.velocity;
+            temp.x = Mathf.MoveTowards(temp.x, 0, 2f * Time.deltaTime);
+            temp.z = Mathf.MoveTowards(temp.z, 0, 2f * Time.deltaTime);
+            rigBod.velocity = temp;
+            Debug.Log(rigBod.velocity);
+        }
+        //Epsilon: infinito a 0
+        //Movetowards: vector 3 para floats
 	}
 
 	void FixedUpdate () {
@@ -55,13 +64,12 @@ public class CharacterBaseMov3D : MonoBehaviour {
         respawnData = transformData;
     }
 
-    /*float GetMaxInclination () {
+	/*float GetMaxInclination () {
     groundCollection.Sort((x, y) => y.incNormalized.CompareTo(x.incNormalized));
     return groundCollection.Count != 0 ? groundCollection[0].incNormalized : 0;
     }*/
 
-
-    void OnCollisionStay(Collision collision) {
+	void OnCollisionStay(Collision collision) {
         if (!groundCollection.Contains(collision.collider)) {
             foreach (ContactPoint contact in collision.contacts) {
                 Debug.DrawRay(contact.point, contact.normal, Color.yellow, 0.25f);
@@ -69,8 +77,12 @@ public class CharacterBaseMov3D : MonoBehaviour {
                 if ((inclination = Vector3.Dot(contact.normal, Vector3.up)) > 0.85f) {
                     grounded = true;
                     groundCollection.Add(collision.collider);
-                    break;
                 }
+                    if (collision.collider.CompareTag("MovingPlatform")) {
+                        transform.SetParent(collision.transform);
+                    break; 
+                    }
+
             }
         }
     }
@@ -78,9 +90,20 @@ public class CharacterBaseMov3D : MonoBehaviour {
     void OnCollisionExit(Collision collision) {
         if (groundCollection.Contains(collision.collider)) {
             groundCollection.Remove(collision.collider);
+
+            /*if (collision.collider.CompareTag("MovingPlatform")){
+                transform.SetParent (null);
+            }*/
         }
         if (groundCollection.Count == 0) {
             grounded = false;
+        }
+
+        if (collision.collider.CompareTag("MovingPlatform"))
+        {
+            transform.SetParent(null);
+            Vector3 exitMomentum = collision.collider.GetComponent<PlatformBehaviour>().currentMomentum;
+            rigBod.AddForce(exitMomentum, ForceMode.VelocityChange);
         }
     }
 
@@ -95,3 +118,6 @@ public class CharacterBaseMov3D : MonoBehaviour {
         Gizmos.DrawRay(transform.position, transform.forward);
 	}
 }
+
+//Pasar grounded al animatior para animacion de salto
+//Modificar velocity solo donde no se afecte
