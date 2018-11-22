@@ -4,8 +4,7 @@ using UnityEngine;
 namespace EntityData.StructLib {
 
     [System.Serializable]
-    public struct CharTransformData
-    {
+    public struct CharTransformData {
         public Vector3 position;
         public Quaternion rotation;
     }
@@ -24,6 +23,16 @@ namespace EntityData.StructLib {
             focusDistance = focus;
             followDistance = follow;
             minFollowSpeed = minSpeed;
+        }
+    }
+
+    public struct GroundData {
+        public Collider collider;
+        public float incNormalized;
+
+        public GroundData (Collider collider, float incNormalized) {
+            this.collider = collider;
+            this.incNormalized = incNormalized;
         }
     }
 }

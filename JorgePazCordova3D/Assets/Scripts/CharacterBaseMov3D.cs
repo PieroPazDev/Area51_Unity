@@ -10,13 +10,17 @@ public class CharacterBaseMov3D : MonoBehaviour {
 
     CharTransformData respawnData;
 
-
     public float speed = 5f;
     public float angSpeed = 25f;
     public float jumpForce = 10f;
 
-	// Use this for initialization
-	void Start () {
+    public bool grounded = false;
+    List<Collider> groundCollection;
+    //List<GroundData> groundCollection;
+
+    // Use this for initialization
+    void Start () {
+        groundCollection = new List<Collider>();
         rigBod = GetComponent<Rigidbody>();
         respawnData.position = transform.position;
         respawnData.rotation = transform.rotation;
@@ -24,6 +28,7 @@ public class CharacterBaseMov3D : MonoBehaviour {
 
 	void Update () {
         if (Input.GetKeyDown(KeyCode.Space)) {
+            //Set velocity Y to zero for consistent jump height
             rigBod.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
         }
 	}
@@ -46,15 +51,45 @@ public class CharacterBaseMov3D : MonoBehaviour {
         rigBod.MoveRotation (respawnData.rotation);
     }
 
-    public void SetRespawn (CharTransformData transformData){
+    public void SetRespawn (CharTransformData transformData) {
         respawnData = transformData;
     }
 
-	void OnTriggerExit (Collider other) {
+    /*float GetMaxInclination () {
+    groundCollection.Sort((x, y) => y.incNormalized.CompareTo(x.incNormalized));
+    return groundCollection.Count != 0 ? groundCollection[0].incNormalized : 0;
+    }*/
+
+
+    void OnCollisionStay(Collision collision) {
+        if (!groundCollection.Contains(collision.collider)) {
+            foreach (ContactPoint contact in collision.contacts) {
+                Debug.DrawRay(contact.point, contact.normal, Color.yellow, 0.25f);
+                float inclination;
+                if ((inclination = Vector3.Dot(contact.normal, Vector3.up)) > 0.85f) {
+                    grounded = true;
+                    groundCollection.Add(collision.collider);
+                    break;
+                }
+            }
+        }
+    }
+
+    void OnCollisionExit(Collision collision) {
+        if (groundCollection.Contains(collision.collider)) {
+            groundCollection.Remove(collision.collider);
+        }
+        if (groundCollection.Count == 0) {
+            grounded = false;
+        }
+    }
+
+    void OnTriggerExit (Collider other) {
         if (other.CompareTag("GameArea")) {
             Respawn();
         }
 	}
+
 	void OnDrawGizmos () {
         Gizmos.color = Color.red;
         Gizmos.DrawRay(transform.position, transform.forward);

@@ -14,8 +14,7 @@ public class CamBehaviour : MonoBehaviour {
 
     public static CamBehaviour main;
 
-	private void Awake()
-	{
+	private void Awake() {
         main = Camera.main.GetComponent<CamBehaviour>();
 	}
 
