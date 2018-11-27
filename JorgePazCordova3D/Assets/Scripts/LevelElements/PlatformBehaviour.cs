@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlatformBehaviour : MonoBehaviour {
+public class PlatformBehaviour : Activatable {
 
     Vector3 startPoint;
     Vector3 currentTarget;

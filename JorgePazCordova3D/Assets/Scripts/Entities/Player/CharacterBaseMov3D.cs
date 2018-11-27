@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using EntityData.StructLib;
+using VectorLib;
 
 public class CharacterBaseMov3D : MonoBehaviour {
 
@@ -46,6 +47,8 @@ public class CharacterBaseMov3D : MonoBehaviour {
         movement = transform.forward * Input.GetAxis("Vertical");
         rigBod.MovePosition(rigBod.position + (movement * speed * Time.fixedDeltaTime));
         Quaternion rotation = Quaternion.Euler(Vector3.up * Input.GetAxis("Horizontal") * angSpeed * Time.fixedDeltaTime);
+        //Quaternion rotation = Quaternion.Euler(Vector3.up * Input.GetAxis("Horizontal") * angSpeed * Time.fixedDeltaTime);
+        //cambiar horizontal por mouse x o y para mover con el mouse
         rigBod.MoveRotation(rotation * rigBod.rotation);
 	}
 
@@ -87,9 +90,22 @@ public class CharacterBaseMov3D : MonoBehaviour {
         }
     }
 
-    void OnCollisionExit(Collision collision) {
+	void OnTriggerEnter(Collider other) {
+        if(other.CompareTag ("Activator")){
+            
+        }
+	}
+
+
+	void OnCollisionExit(Collision collision) {
         if (groundCollection.Contains(collision.collider)) {
             groundCollection.Remove(collision.collider);
+        if (collision.collider.CompareTag("MovingPlatform")) {
+                transform.SetParent(null);
+                Vector3 exitMomentum = collision.collider.GetComponent<PlatformBehaviour>().currentMomentum;
+                exitMomentum = VectorExt.OneByOneProduct(exitMomentum, VectorExt.zeroY);
+                rigBod.AddForce(exitMomentum, ForceMode.VelocityChange);
+            }
 
             /*if (collision.collider.CompareTag("MovingPlatform")){
                 transform.SetParent (null);
@@ -99,12 +115,6 @@ public class CharacterBaseMov3D : MonoBehaviour {
             grounded = false;
         }
 
-        if (collision.collider.CompareTag("MovingPlatform"))
-        {
-            transform.SetParent(null);
-            Vector3 exitMomentum = collision.collider.GetComponent<PlatformBehaviour>().currentMomentum;
-            rigBod.AddForce(exitMomentum, ForceMode.VelocityChange);
-        }
     }
 
     void OnTriggerExit (Collider other) {
