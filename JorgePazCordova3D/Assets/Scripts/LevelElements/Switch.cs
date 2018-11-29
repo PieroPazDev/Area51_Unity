@@ -14,8 +14,8 @@ public class Switch : Activator {
         GetComponent<Renderer>().material.color = inactiveColor;
 	}
 
-    public bool Use (Activatable activatable){
-        if (isSwitched) { ActivateStart(target); } else { ActivateEnd(target); }
+    public override bool Use () {
+        if (!isSwitched) { ActivateStart(target); } else { ActivateEnd(target); }
         return isSwitched;
     }
 
@@ -24,10 +24,8 @@ public class Switch : Activator {
         GetComponent<Renderer>().material.color = activeColor;
     }
 
-    public override void ActivateEnd(Activatable activatable)
-    {
-        isSwitched = true;
-        GetComponent<Renderer>().material.color = activeColor;
+    public override void ActivateEnd(Activatable activatable) {
+        isSwitched = false;
+        GetComponent<Renderer>().material.color = inactiveColor;
     }
-
 }

@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Activator : MonoBehaviour {
 
+    public virtual bool Use() {
+        Debug.Log("Calling Use on Activator");
+        return false;
+    }
+
     public virtual void ActivateStart(Activatable activatable){
         Debug.Log("Process Started Sent");
     }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -394,11 +394,11 @@ GameObject:
   - component: {fileID: 437762495}
   - component: {fileID: 437762494}
   - component: {fileID: 437762493}
-  - component: {fileID: 437762497}
   - component: {fileID: 437762498}
+  - component: {fileID: 437762497}
   m_Layer: 0
   m_Name: Switch
-  m_TagString: Untagged
+  m_TagString: Activator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -484,6 +484,7 @@ MonoBehaviour:
   isSwitched: 0
   activeColor: {r: 0.18965286, g: 0.7264151, b: 0.023985418, a: 1}
   inactiveColor: {r: 0.4245283, g: 0.046057325, b: 0.046057325, a: 1}
+  target: {fileID: 0}
 --- !u!135 &437762498
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1401,14 +1402,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2066392230}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.4, y: 1.5, z: -0.7}
+  m_LocalRotation: {x: -0, y: 0.21183898, z: -0, w: 0.9773046}
+  m_LocalPosition: {x: -0.4, y: 1.5, z: 0.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1212330450}
   m_Father: {fileID: 0}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 24.460001, z: 0}
 --- !u!114 &2066392235
 MonoBehaviour:
   m_ObjectHideFlags: 0

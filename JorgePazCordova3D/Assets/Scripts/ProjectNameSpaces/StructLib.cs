@@ -1,18 +1,14 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace EntityData.StructLib {
-
     [System.Serializable]
     public struct CharTransformData {
         public Vector3 position;
         public Quaternion rotation;
     }
 
-
     [System.Serializable]
-    public struct TargetData
-    {
+    public struct TargetData {
         public Transform target;
         public Vector3 focusDistance;
         public Vector3 followDistance;

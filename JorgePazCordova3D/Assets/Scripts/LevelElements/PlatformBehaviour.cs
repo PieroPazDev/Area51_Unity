@@ -20,7 +20,6 @@ public class PlatformBehaviour : Activatable {
 	
 	// Update is called once per frame
 	void Update () {
-
         if(transform.position == currentTarget){
             currentTarget = (currentTarget == targetPoint) ? startPoint : targetPoint;
         }
