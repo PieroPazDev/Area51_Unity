@@ -52,9 +52,9 @@ public class CamBehaviour : MonoBehaviour {
         if (data.target) {
         Gizmos.color = Color.green;
             Gizmos.DrawLine(followPoint, focusPoint);
-            Gizmos.DrawSphere(focusPoint, 0.25f);
+            Gizmos.DrawWireSphere(followPoint, 0.25f);
             Gizmos.color = Color.white;
-            Gizmos.DrawWireSphere(focusPoint, 0.25f);
+            Gizmos.DrawSphere(focusPoint, 0.15f);
         }
     }
 }
