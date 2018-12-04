@@ -4,6 +4,17 @@ using UnityEngine;
 
 public class Activatable : MonoBehaviour {
 
+    protected bool activated;
+    protected List<Activator> linkedActivators = new List<Activator>();
+
+    public void LinkActivator (Activator activator) {
+        linkedActivators.Add(activator);
+    }
+
+    public Activator[] LinkedActivators() {
+        return linkedActivators.ToArray();
+    }
+
     public virtual void OnStart(){
         
     }

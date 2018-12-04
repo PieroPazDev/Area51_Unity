@@ -1,16 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class Switch : Activator {
 
     public bool isSwitched;
     public Color activeColor;
     public Color inactiveColor;
 
-    public Activatable target;
-
-	void Start() {
+	void Start () {
         GetComponent<Renderer>().material.color = inactiveColor;
 	}
 
@@ -19,13 +16,17 @@ public class Switch : Activator {
         return isSwitched;
     }
 
-	public override void ActivateStart(Activatable activatable) {
+    protected override void ActivateStart (Activatable activatable) {
         isSwitched = true;
         GetComponent<Renderer>().material.color = activeColor;
-    }
+        Debug.Log(activatable.name + " Start");
+        activatable.OnStart();
+	}
 
-    public override void ActivateEnd(Activatable activatable) {
+    protected override void ActivateEnd (Activatable activatable, bool recall = true) {
         isSwitched = false;
         GetComponent<Renderer>().material.color = inactiveColor;
+        Debug.Log(activatable.name + " End");
+        base.ActivateEnd(activatable, recall);
     }
 }

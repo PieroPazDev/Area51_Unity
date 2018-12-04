@@ -10,7 +10,7 @@ public class CamBehaviour : MonoBehaviour {
 
     Vector3 focusPoint { get { return data.target.position + GetRelativePos(data.target, data.focusDistance); } }
     Vector3 followPoint { get { return data.target.position + GetRelativePos(data.target, data.followDistance); } }
-    public float followDistanceDelta { get { return Vector3.Distance (transform.position, data.followDistance); }}
+    public float followDistanceDelta { get { return Vector3.Distance (transform.position, followPoint); }}
 
     public static CamBehaviour main;
 
@@ -24,8 +24,8 @@ public class CamBehaviour : MonoBehaviour {
     }
 
     void LateUpdate () {
-        transform.position = Vector3.MoveTowards(transform.position , followPoint, (data.minFollowSpeed + followDistanceDelta) * Time.deltaTime);
         transform.LookAt (focusPoint);
+        transform.position = Vector3.MoveTowards(transform.position, followPoint, (data.minFollowSpeed + followDistanceDelta) * Time.deltaTime);
     }
 
 
