@@ -77,7 +77,7 @@ public class CharacterBaseMov3D : MonoBehaviour {
         rigBod.MoveRotation(rotation * rigBod.rotation);
 	}
 
-    void Respawn () {
+    public void Respawn () {
         rigBod.velocity = Vector3.zero;
         Reposition (respawnData);
         CamBehaviour.main.Reposition(respawnData.position + CamBehaviour.main.data.followDistance);
@@ -147,7 +147,9 @@ public class CharacterBaseMov3D : MonoBehaviour {
 
     void OnTriggerExit (Collider other) {
         if (other.CompareTag("GameArea")) {
-            Respawn();
+            inputEnabled = false;
+            //Respawn();
+            GameControl.instance.StartRespawnProcess();
         } else if (other.CompareTag("Activator")) {
             currentActivator = null;
         }
