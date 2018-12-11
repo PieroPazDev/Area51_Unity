@@ -71,7 +71,7 @@ public class CharacterBaseMov3D : MonoBehaviour {
         movement = transform.forward * verticalMagnitude;
         playerAnimator.SetFloat("MoveSpeed", verticalMagnitude);
         rigBod.MovePosition(rigBod.position + (movement * speed * Time.fixedDeltaTime));
-        Quaternion rotation = Quaternion.Euler(Vector3.up * Input.GetAxis("Horizontal") * angSpeed * Time.fixedDeltaTime);
+        Quaternion rotation = Quaternion.Euler(Vector3.up * angularMagnitude * angSpeed * Time.fixedDeltaTime);
         //Quaternion rotation = Quaternion.Euler(Vector3.up * Input.GetAxis("Horizontal") * angSpeed * Time.fixedDeltaTime);
         //cambiar horizontal por mouse x o y para mover con el mouse
         rigBod.MoveRotation(rotation * rigBod.rotation);

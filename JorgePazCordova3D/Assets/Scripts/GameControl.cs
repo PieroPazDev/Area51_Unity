@@ -6,16 +6,21 @@ public class GameControl : MonoBehaviour {
 
     static public GameControl instance ;
     public CharacterBaseMov3D currentPlayer;
+    public UIManager uIManager;
     bool inTransition;
 
 	// Creaciòn de Singleton
 	void Awake () {
         if (instance == null) {
             instance = this;
-        }
-        else {
-            if (instance != null) {
-                Destroy(this);
+            DontDestroyOnLoad(gameObject);
+        } else {
+            if (instance != this) {
+                if (gameObject != instance.gameObject){
+                    Destroy(gameObject);
+                }else{
+                    Destroy(this);
+                }
             }
         }
 	}
@@ -28,12 +33,17 @@ public class GameControl : MonoBehaviour {
 	}
 
     IEnumerator RespawnProcess () {
-        yield return new WaitForSeconds(3f);
-        currentPlayer.Respawn();
+        yield return uIManager.FadeProcess(currentPlayer.Respawn);
+
         while (!currentPlayer.grounded){
             yield return null;
         }
         //yield return new WaitUntil(() => currentPlayer.grounded);
+        currentPlayer.EnableInput();
         inTransition = false;
     }
 }
+
+
+// para poder usar un metodo como action debe retornar void y no tener parametros
+// tener un metodo en action permite pasar como parametro a otros metodos
