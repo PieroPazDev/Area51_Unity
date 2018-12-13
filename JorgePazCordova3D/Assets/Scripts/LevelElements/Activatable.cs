@@ -15,15 +15,21 @@ public class Activatable : MonoBehaviour {
         return linkedActivators.ToArray();
     }
 
-    public virtual void OnStart(){
+    public virtual void Start() {
+        if(linkedActivators.Count == 0) {
+            OnStart();
+        }
+	}
+
+	public virtual void OnStart() {
         
     }
 
-    public virtual void OnActive(){
+    public virtual void OnActive() {
         
     }
 
-    public virtual void OnEnd(){
+    public virtual void OnEnd() {
         
     }
 }

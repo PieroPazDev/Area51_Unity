@@ -1,13 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class GameControl : MonoBehaviour {
 
-    static public GameControl instance ;
+    static public GameControl instance;
     public CharacterBaseMov3D currentPlayer;
     public UIManager uIManager;
     bool inTransition;
+
+    public int currentLevel { get { return SceneManager.GetActiveScene().buildIndex; }}
 
 	// Creaciòn de Singleton
 	void Awake () {
@@ -25,6 +29,19 @@ public class GameControl : MonoBehaviour {
         }
 	}
 
+    public void StartLevelChangeProcess(int index){
+        if (!inTransition){
+            StartCoroutine(LevelChangeProcess(index));
+            inTransition = true;
+        }
+    }
+
+
+    void ChangeLevel (int targetLevel){
+        SceneManager.LoadScene(targetLevel);
+
+    }
+
 	public void StartRespawnProcess() {
         if(!inTransition){
             StartCoroutine(RespawnProcess());
@@ -40,6 +57,11 @@ public class GameControl : MonoBehaviour {
         }
         //yield return new WaitUntil(() => currentPlayer.grounded);
         currentPlayer.EnableInput();
+        inTransition = false;
+    }
+
+    IEnumerator LevelChangeProcess (int index){
+        yield return uIManager.FadeProcess(ChangeLevel, index);
         inTransition = false;
     }
 }

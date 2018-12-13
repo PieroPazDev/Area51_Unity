@@ -35,3 +35,9 @@ public class Notes : MonoBehaviour {
 // threading consulta con el sistema operativo y se pueden crear otros threads
 // unity trabaja con un solo thread para trabajar con los procesos
 // WindowWizard - WindowEditor
+
+//overload
+//delegate
+//mcdn.... declaraciòn de un delegate
+// save unsaved
+// eventos

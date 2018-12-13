@@ -32,6 +32,9 @@ public class CharacterBaseMov3D : MonoBehaviour {
         playerAnimator = GetComponent<Animator>();
         respawnData.position = transform.position;
         respawnData.rotation = transform.rotation;
+        if (!GameControl.instance.currentPlayer || GameControl.instance.currentPlayer != this){
+            GameControl.instance.currentPlayer = this;
+        }
 	}
 
 	void Update () {
@@ -142,6 +145,12 @@ public class CharacterBaseMov3D : MonoBehaviour {
     void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Activator")) {
             currentActivator = other.GetComponent<Activator>();
+        } else if(other.CompareTag("LevelGoal")){
+            transform.SetParent(other.transform);
+            transform.localPosition = VectorExt.OneByOneProduct(transform.localPosition, Vector3.up);
+            inputEnabled = false;
+            int goalIndex = other.GetComponent<LevelSelectorData>().levelIndex;
+            GameControl.instance.StartLevelChangeProcess(goalIndex);
         }
     }
 
