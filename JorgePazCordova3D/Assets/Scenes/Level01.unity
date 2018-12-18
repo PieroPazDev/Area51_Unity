@@ -249,7 +249,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 6c1eff5a29ff64d2dbc20cf6317ea4c1, type: 2}
+  - {fileID: 2100000, guid: 2942dd864b3ca47768f6e4362f7eede7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -283,8 +283,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 134463911}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.28, y: 0.97, z: 4.29}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.3, y: 0.97, z: 4.29}
+  m_LocalScale: {x: 2.4840808, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 893405025}
   m_RootOrder: 5
@@ -2230,8 +2230,10 @@ GameObject:
   - component: {fileID: 1537891604}
   - component: {fileID: 1537891603}
   - component: {fileID: 1537891602}
+  - component: {fileID: 1537891606}
+  - component: {fileID: 1537891607}
   m_Layer: 0
-  m_Name: Cube (2)
+  m_Name: PushBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2298,12 +2300,37 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1537891601}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.18, y: 0.97, z: 4.29}
+  m_LocalPosition: {x: -1.4, y: 0.97, z: 4.29}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 893405025}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1537891606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1537891601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 124db0b32e2e348c28fa27c7bcb4ac39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {x: -5.05, y: 1, z: 4}
+  pushSpeed: 30
+--- !u!65 &1537891607
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1537891601}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.44, y: 1, z: 0.84}
+  m_Center: {x: -2.24, y: 0, z: 0}
 --- !u!1 &1585934589
 GameObject:
   m_ObjectHideFlags: 0

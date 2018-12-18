@@ -41,3 +41,33 @@ public class Notes : MonoBehaviour {
 //mcdn.... declaraciòn de un delegate
 // save unsaved
 // eventos
+
+//Comportamiento(Behaviour):
+//Accion(es)
+//Contexto (Cuando? Por que?)
+//Naturaleza
+
+//Inteligencia Artificial:
+//Algoritmo (Estado: mantiene el rango de posibilidades para dicho cambio de comportamiento) (Estado: Indicador de comportamiento)
+//Decisiones (Decision adecuada para la sutuaciòn)
+//Ambiente (Factores considerados bueno o malo, situacional, de contexto interno o externo)
+//Comportamientos
+//Depende del estado varia el comportamiento
+//Condiciones de la entidad
+
+//Machine Learning
+//Polimorfismo
+
+//Genètica - Rango de mutaciòn (Aleatorio)
+//Inteligencia Artificial - Investigar: Redes Neuronales
+//FSM Finite State Machine (Maquina de Estados Finita) cantidad limitada para cada una de las entidades
+//   EVENT
+//      1    2     3    4    5    6    7
+//S  A.----.----.----.----.----.----.----
+//T  B.----.----.----.----.----.----.----
+//A  C.----.----.----.----.----.----.----
+//T  D.----.----.----.----.----.----.----
+//E  E.----.----.----.----.----.----.----
+
+//combinacion de estado con evento me da la decision a tomar
+//
