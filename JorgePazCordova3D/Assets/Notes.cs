@@ -52,8 +52,10 @@ public class Notes : MonoBehaviour {
 //Decisiones (Decision adecuada para la sutuaciòn)
 //Ambiente (Factores considerados bueno o malo, situacional, de contexto interno o externo)
 //Comportamientos
-//Depende del estado varia el comportamiento
+//Depende del estado varia el comportamiento: tambièn -->
+//Estados comprenden:  comportamiento y parametros de identidad que hacen funcional el comportamiento
 //Condiciones de la entidad
+//(Estado: ideas de los comportamientos)
 
 //Machine Learning
 //Polimorfismo
@@ -61,13 +63,20 @@ public class Notes : MonoBehaviour {
 //Genètica - Rango de mutaciòn (Aleatorio)
 //Inteligencia Artificial - Investigar: Redes Neuronales
 //FSM Finite State Machine (Maquina de Estados Finita) cantidad limitada para cada una de las entidades
-//   EVENT
-//      1    2     3    4    5    6    7
-//S  A.----.----.----.----.----.----.----
-//T  B.----.----.----.----.----.----.----
-//A  C.----.----.----.----.----.----.----
-//T  D.----.----.----.----.----.----.----
-//E  E.----.----.----.----.----.----.----
 
-//combinacion de estado con evento me da la decision a tomar
+//  MAQUINA DE ESTADOS
+
+//      EVENT
+//                 1              2
+//                   0             1   
+// S  0 Patroll-- A.Found Enemy.Lost Enemy
+// T               follow      . patroll     
+// A                           .  
+// T                           .
+// E  1 Folow -- B.  follow    . patroll
 //
+
+// combinacion de estado con evento me da la decision a tomar
+// enum ---  internamente son enteros
+// int en byte : 4bytes
+// un array puede tener las dimensiones que se le agregue

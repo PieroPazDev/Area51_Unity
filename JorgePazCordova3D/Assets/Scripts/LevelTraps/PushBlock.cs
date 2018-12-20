@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ProjectStateLib;
 
-public class PushBlock : ProjectStateLibs {
+public class PushBlock : MonoBehaviour {
 
     Vector3 startPos;
     public Vector3 target;
@@ -14,7 +15,7 @@ public class PushBlock : ProjectStateLibs {
 	// Use this for initialization
 	void Start () {
         startPos = transform.position;
-
+        state = TrapState.Waiting;
 	}
 	
 	// Update is called once per frame
@@ -24,21 +25,24 @@ public class PushBlock : ProjectStateLibs {
         } else if (performingAction){
             transform.position = Vector3.MoveTowards(transform.position,target,  pushSpeed * Time.deltaTime);
             if (transform.position == target){
-                performingAction = true;
+                performingAction = false;
             }
         }
 	}
 
     void SelectStateAction (){
         switch (state){
-            case TrapState.Acting;
+            case TrapState.Acting:
                 if (GameControl.instance.inTransition){
                     state = TrapState.Inactive;
                 } else {
                     state = TrapState.Waiting;
                 }
                 break;
-            case TrapState.Inactive;
+            case TrapState.Waiting:
+                state = TrapState.Acting;
+                break;
+            case TrapState.Inactive:
                 break;
         }
     }

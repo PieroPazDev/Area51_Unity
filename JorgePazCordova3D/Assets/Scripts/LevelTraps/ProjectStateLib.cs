@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectStateLibs : MonoBehaviour {
+namespace ProjectStateLib {
 
     public enum TrapState {
         Waiting,

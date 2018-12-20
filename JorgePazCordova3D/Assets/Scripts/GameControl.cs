@@ -9,7 +9,7 @@ public class GameControl : MonoBehaviour {
     static public GameControl instance;
     public CharacterBaseMov3D currentPlayer;
     public UIManager uIManager;
-    bool inTransition;
+    public bool inTransition { get; private set; }
 
     public int currentLevel { get { return SceneManager.GetActiveScene().buildIndex; }}
 
@@ -64,6 +64,7 @@ public class GameControl : MonoBehaviour {
         yield return uIManager.FadeProcess(ChangeLevel, index);
         inTransition = false;
     }
+
 }
 
 
