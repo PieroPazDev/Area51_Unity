@@ -64,7 +64,6 @@ public class GameControl : MonoBehaviour {
         yield return uIManager.FadeProcess(ChangeLevel, index);
         inTransition = false;
     }
-
 }
 
 
